@@ -60,6 +60,7 @@ type InitContext struct {
 }
 
 func NewInitContext(rt *goja.Runtime, ctxPtr *context.Context, fs afero.Fs, pwd string) *InitContext {
+	registerGlobals(rt)
 	return &InitContext{
 		runtime: rt,
 		ctxPtr:  ctxPtr,
@@ -74,6 +75,7 @@ func NewInitContext(rt *goja.Runtime, ctxPtr *context.Context, fs afero.Fs, pwd 
 }
 
 func newBoundInitContext(base *InitContext, ctxPtr *context.Context, rt *goja.Runtime) *InitContext {
+	registerGlobals(rt)
 	return &InitContext{
 		runtime: rt,
 		ctxPtr:  ctxPtr,
